@@ -1,20 +1,29 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Home from "./src/screens/Home.js";
-import { Header } from "react-native/Libraries/NewAppScreen";
+import Header from "./src/global/Header.js";
+import ItemListCategory from "./src/screens/ItemListCategory.js";
 
 export default function App() {
+  const [categorySelected, setCategorySelected] = useState("");
   return (
     <View style={styles.container}>
-      <Home />
+      <Header />
+      {categorySelected ? (
+        <ItemListCategory
+          category={categorySelected}
+          setCategorySelected={setCategorySelected}
+        />
+      ) : (
+        <Home setCategorySelected={setCategorySelected} />
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 60,
     flex: 1,
   },
 });
