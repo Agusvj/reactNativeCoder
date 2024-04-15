@@ -1,9 +1,22 @@
-import { StyleSheet, Text, View, Pressable, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  Image,
+  useWindowDimensions,
+} from "react-native";
 import React from "react";
+import { colors } from "../constants/colors";
 
-const ProductItem = ({ item, setProductDetailId }) => {
+const ProductItem = ({ item, navigation }) => {
+  const { width, height } = useWindowDimensions();
+
   return (
-    <Pressable style={styles.additionalStylesCard}>
+    <Pressable
+      style={styles.additionalStylesCard}
+      onPress={() => navigation.navigate("Detail", { productId: item.id })}
+    >
       <Text style={styles.textCategory}>{item.title}</Text>
       <Image
         style={styles.image}
@@ -18,8 +31,9 @@ export default ProductItem;
 
 const styles = StyleSheet.create({
   image: {
-    height: 100,
-    width: 100,
+    minHeight: 90,
+    minWidth: 90,
+    width: "30%",
     borderRadius: 8,
   },
   additionalStylesCard: {
@@ -29,11 +43,12 @@ const styles = StyleSheet.create({
     width: "90%",
     justifyContent: "space-between",
     margin: 10,
-    backgroundColor: "#164e63",
+    backgroundColor: colors.main,
     borderRadius: 8,
   },
   textCategory: {
     color: "white",
-    fontWeight: "bold",
+    width: "60%",
+    fontFamily: "SpaceMono_700Bold",
   },
 });

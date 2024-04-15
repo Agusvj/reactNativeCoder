@@ -2,9 +2,11 @@ import { StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
 import Card from "./Card";
 
-const CategoryItem = ({ category }) => {
+const CategoryItem = ({ category, navigation }) => {
   return (
-    <Pressable onPress={() => console.log("category pressed" + category)}>
+    <Pressable
+      onPress={() => navigation.navigate("ItemListCategory", { category })}
+    >
       <Card style={styles.cardContainer}>
         <Text style={styles.text}>{category}</Text>
       </Card>
@@ -21,8 +23,11 @@ const styles = StyleSheet.create({
     padding: 10,
     justifyContent: "center",
     alignItems: "flex-start",
+    borderRadius: 10,
   },
   text: {
     fontSize: 20,
+    color: "white",
+    fontFamily: "SpaceMono_700Bold",
   },
 });

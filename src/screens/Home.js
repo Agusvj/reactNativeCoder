@@ -2,12 +2,8 @@ import { StyleSheet, Text, View } from "react-native";
 
 import Categories from "../components/Categories.js";
 
-const Home = ({ setCategorySelected }) => {
-  return (
-    <View>
-      <Categories />
-    </View>
-  );
+const Home = ({ route, navigation }) => {
+  return <Categories navigation={navigation} />;
 };
 
 export default Home;

@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, TextInput, Pressable } from "react-native";
 import React, { useState } from "react";
+import { colors } from "../../constants/colors";
 
-const Search = ({ onSearch }) => {
+const Search = ({ onSearch, goBack = () => {} }) => {
   const [input, setInput] = useState("");
   const [error, setError] = useState("");
 
@@ -12,6 +13,7 @@ const Search = ({ onSearch }) => {
     } else {
       setError("");
       onSearch(input);
+      console.log(input);
     }
   };
 
@@ -29,10 +31,19 @@ const Search = ({ onSearch }) => {
       />
       <View style={styles.buttonContainer}>
         <Pressable onPress={search} style={styles.button}>
-          <Text style={{ color: "white", fontWeight: "bold" }}>Search</Text>
+          <Text style={{ color: "white", fontFamily: "SpaceMono_700Bold" }}>
+            Search
+          </Text>
         </Pressable>
         <Pressable onPress={removeInput} style={styles.button}>
-          <Text style={{ color: "white", fontWeight: "bold" }}>Reset</Text>
+          <Text style={{ color: "white", fontFamily: "SpaceMono_700Bold" }}>
+            Reset
+          </Text>
+        </Pressable>
+        <Pressable onPress={goBack} style={styles.button}>
+          <Text style={{ color: "white", fontFamily: "SpaceMono_700Bold" }}>
+            GoBack
+          </Text>
         </Pressable>
       </View>
       {error ? <Text>{error}</Text> : null}
@@ -52,7 +63,7 @@ const styles = StyleSheet.create({
   },
   input: {
     color: "white",
-    borderColor: "white",
+    borderColor: colors.main,
     borderWidth: 2,
     padding: 10,
     borderRadius: 5,
@@ -60,7 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   button: {
-    backgroundColor: "#164e63",
+    backgroundColor: colors.main,
     paddingHorizontal: 25,
     paddingVertical: 5,
     borderRadius: 5,
@@ -68,7 +79,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
-    borderBottomColor: "white",
+    borderBottomColor: colors.main,
     borderBottomWidth: 2,
     width: "100%",
     paddingVertical: 15,

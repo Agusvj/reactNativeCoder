@@ -1,29 +1,31 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
-import React, { useState } from "react";
-import Home from "./src/screens/Home.js";
-import Header from "./src/global/Header.js";
-import ItemListCategory from "./src/screens/ItemListCategory.js";
+import { Platform, StyleSheet, SafeAreaView } from "react-native";
+import Navigator from "./src/navigation/Navigator.js";
+import { useFonts, AtomicAge_400Regular } from "@expo-google-fonts/atomic-age";
+import { SpaceMono_700Bold } from "@expo-google-fonts/space-mono";
 
 export default function App() {
-  const [categorySelected, setCategorySelected] = useState("");
+  let [fontsLoaded, fontError] = useFonts({
+    AtomicAge_400Regular,
+    SpaceMono_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Header />
-      {categorySelected ? (
-        <ItemListCategory
-          category={categorySelected}
-          setCategorySelected={setCategorySelected}
-        />
-      ) : (
-        <Home setCategorySelected={setCategorySelected} />
-      )}
-    </View>
+    <Navigator />
+    // <SafeAreaView style={styles.container}>
+    //   <Navigator />
+    // </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
 });
