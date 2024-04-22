@@ -1,8 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { colors } from "../constants/colors.js";
+import { useSelector } from "react-redux";
 
 const Header = ({ title }) => {
+  const categorySelected = useSelector(
+    (state) => state.shopReducer.value.categorySelected
+  );
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{title}</Text>

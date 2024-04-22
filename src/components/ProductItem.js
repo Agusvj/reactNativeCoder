@@ -8,14 +8,22 @@ import {
 } from "react-native";
 import React from "react";
 import { colors } from "../constants/colors";
+import { useDispatch } from "react-redux";
+import { setIdSelected } from "../features/Shop/shopSlice";
 
 const ProductItem = ({ item, navigation }) => {
   const { width, height } = useWindowDimensions();
+  const dispatch = useDispatch();
+
+  const handleNavigate = () => {
+    dispatch(setIdSelected(item.title));
+    navigation.navigate("Detail", { productId: item.id });
+  };
 
   return (
     <Pressable
       style={styles.additionalStylesCard}
-      onPress={() => navigation.navigate("Detail", { productId: item.id })}
+      onPress={() => handleNavigate()}
     >
       <Text style={styles.textCategory}>{item.title}</Text>
       <Image

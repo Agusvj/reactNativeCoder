@@ -49,7 +49,7 @@ export default ItemListCategory;
 
 const styles = StyleSheet.create({
   flatListContainer: {
-    backgroundColor: colors.terciary,
+    backgroundColor: "white",
     width: "100%",
     flex: 1,
     flexDirection: "column",
